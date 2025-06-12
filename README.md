@@ -14,3 +14,7 @@ OpenGov Summary CLI is a CLI tool using Polkassembly and OpenAI APIs to fetch pr
 
 - [commander](https://www.npmjs.com/package/commander): For building the CLI interface.
 - [inquirer](https://www.npmjs.com/package/inquirer): For interactive CLI prompts.
+
+### APIs:
+
+- [polkassembly](https://docs.polkassembly.io/jekyll/2023-10-17-api-and-resources.html): For fetching referendum data.
