@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsup",
     "run": "pnpm build",
+    "lint": "eslint './**' --fix && npx prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.27.0",
+    "@typescript-eslint/eslint-plugin": "^8.29.1",
     "@typescript-eslint/parser": "^8.34.0",
     "eslint": "^9.27.0",
     "eslint-config-prettier": "^10.1.5",
@@ -33,6 +35,7 @@
     "eslint-plugin-prefer-arrow-functions": "^3.6.2",
     "eslint-plugin-prettier": "^5.4.0",
     "eslint-plugin-unused-imports": "^4.1.4",
+    "globals": "^16.2.0",
     "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
     "tsup": "^8.5.0",

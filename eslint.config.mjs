@@ -20,15 +20,10 @@ export default [
       '**/*.log',
       '**/*.lock',
       '**/*.md',
-      '**/*.webmanifest',
       '**/LICENSE',
       '**/node_modules/',
       '**/dist/',
       '**/CHANGELOG.md',
-      '**/.licenserc.json',
-      '**/lottie/',
-      '**/vite.config.ts',
-      '**/_redirects',
       '**/*/pnpm-lock.yaml',
     ],
   },
@@ -112,8 +107,6 @@ export default [
           tsx: 'never',
         },
       ],
-      // React
-      // "@typescript-eslint/no-unnecessary-condition": "error", // in progress
       'prefer-arrow-functions/prefer-arrow-functions': [
         'warn',
         {
@@ -121,15 +114,6 @@ export default [
           disallowPrototype: false,
           returnStyle: 'unchanged',
           singleReturnOnly: false,
-        },
-      ],
-      'react/react-in-jsx-scope': 'off',
-      'react-hooks/rules-of-hooks': 'error',
-      'react/jsx-no-useless-fragment': 'error',
-      'react/jsx-filename-extension': [
-        'warn',
-        {
-          extensions: ['.tsx'],
         },
       ],
       // Typescript
