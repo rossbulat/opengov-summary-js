@@ -1,6 +1,7 @@
 import axios from 'axios'
 import type { OptionValues } from 'commander'
 import inquirer from 'inquirer'
+import { program } from './index.js'
 
 // Split string action - example implementation
 export const splitString = async (str: string, options: OptionValues) => {
@@ -12,21 +13,29 @@ export const splitString = async (str: string, options: OptionValues) => {
 
   console.log(str.split(options.separator, limit))
 
-  const { choice } = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'choice',
-      message: 'Pick a fruit:',
-      choices: ['Apple', 'Banana', 'Cherry'],
-    },
-  ])
-  console.log(`You picked: ${choice}`)
-
-  // Input the referendum ID
-  const refId = 123
-
-  // Fetch referendum data
-  await getReferendum(refId)
+  // Loop prompt until user wants to exit
+  while (true) {
+    const { choice } = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'choice',
+        message: 'Pick a fruit:',
+        choices: ['Help', 'Get OpenGov Rederendum', 'Exit'],
+      },
+    ])
+    console.log(`You picked: ${choice}`)
+    if (choice === 'Help') {
+      console.log(program.helpInformation())
+    } else if (choice === 'Exit') {
+      console.log('Exiting...')
+      break
+    } else {
+      // Input the referendum ID
+      const refId = 123
+      // Fetch referendum data
+      await getReferendum(refId)
+    }
+  }
 }
 
 const getReferendum = async (refId: number): Promise<boolean> => {

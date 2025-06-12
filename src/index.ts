@@ -15,3 +15,5 @@ program
   .action(splitString)
 
 program.parse()
+
+export { program }
