@@ -1,3 +1,4 @@
+import axios from 'axios'
 import type { OptionValues } from 'commander'
 import inquirer from 'inquirer'
 
@@ -20,4 +21,35 @@ export const splitString = async (str: string, options: OptionValues) => {
     },
   ])
   console.log(`You picked: ${choice}`)
+
+  // Input the referendum ID
+  const refId = 123
+
+  // Fetch referendum data
+  await getReferendum(refId)
+}
+
+const getReferendum = async (refId: number): Promise<boolean> => {
+  try {
+    const baseURL = 'https://api.polkassembly.io/api/v1'
+    const axiosApi = axios.create({
+      baseURL,
+    })
+    const response = await axiosApi.get(
+      `/posts/on-chain-post?postId=${refId}&proposalType=referendums_v2`,
+      {
+        maxBodyLength: Infinity,
+        headers: { 'x-network': 'polkadot' },
+      }
+    )
+    const { content, post_id, status, title } = response.data
+    console.log('post id: ', post_id)
+    console.log('title: ', title)
+    console.log('status: ', status)
+    console.log('content: ', content)
+
+    return true
+  } catch (err) {
+    return false
+  }
 }
