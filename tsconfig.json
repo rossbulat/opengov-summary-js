@@ -18,8 +18,7 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "noUnusedLocals": true,
-    "jsx": "react-jsx",
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "eslint.config.js"],
    "exclude": ["**/*/node_modules", "**/*/dist"]
 }

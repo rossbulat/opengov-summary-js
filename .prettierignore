@@ -1,0 +1,12 @@
+**/dist
+**/node_modules
+**/package.json
+**/package-lock.json
+**/pnpm-lock.yaml
+**/.eslintrc.js
+**/tsconfig.json
+**/tstsconfig.tsbuildinfo
+README.md
+*CODEOWNERS*
+CHANGELOG.md
+.licenserc.json

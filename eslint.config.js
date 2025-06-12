@@ -5,8 +5,6 @@ import pluginJs from '@eslint/js'
 import importPlugin from 'eslint-plugin-import'
 import preferArrowFunctions from 'eslint-plugin-prefer-arrow-functions'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
 import unusedImports from 'eslint-plugin-unused-imports'
 import globals from 'globals'
 import path from 'path'
@@ -40,10 +38,8 @@ export default [
   eslintPluginPrettierRecommended,
   {
     plugins: {
-      react,
       'prefer-arrow-functions': preferArrowFunctions,
       'unused-imports': unusedImports,
-      'react-hooks': reactHooks,
     },
     languageOptions: {
       globals: {
