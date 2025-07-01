@@ -3,5 +3,5 @@ export interface GetReferendumResult {
   content: string
   status: string
   tags: string[]
-  comment_count: number
+  comments_count: number
 }

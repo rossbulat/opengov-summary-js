@@ -28,13 +28,13 @@ export const getReferendum = async (
     }
 
     // Extract relevant metadata from the response and return it
-    const { status, title, tags, comment_count, content } = response.data
+    const { status, title, tags, comments_count, content } = response.data
     return {
       title,
       content,
       status,
       tags,
-      comment_count,
+      comments_count,
     }
   } catch (err) {
     // Log error details and return undefined if an error occurs

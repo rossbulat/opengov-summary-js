@@ -8,7 +8,7 @@ import { getReferendum } from '../utils/referendums.js'
 
 // Define the schema for the referendum summary command
 const schema = z.object({
-  refId: z.coerce.number().int().min(0),
+  ref: z.coerce.number().int().min(0),
 })
 
 // Function to inspect referenda
@@ -25,7 +25,7 @@ export const referendum = new Command('referendum')
       process.exit(1)
     }
     // Extract referendum ID from options
-    const { refId } = options.data
+    const refId = options.data.ref
 
     while (true) {
       // Prompt user for action
@@ -75,11 +75,11 @@ const handleDisplayMetadata = async (refId: number) => {
     return
   }
   // Display the CLI friendly metadata
-  const { status, title, tags, comment_count } = result
+  const { status, title, tags, comments_count } = result
   console.log('Title: ', title)
   console.log('Status: ', status)
   console.log('Tags: ', tags)
-  console.log('Comment count: ', comment_count)
+  console.log('Comment count: ', comments_count)
 }
 
 // Handler for displaying help information
