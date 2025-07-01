@@ -1,19 +1,24 @@
 import { program } from 'commander'
-import { splitString } from './actions.js'
+import { referendum } from './command/referendum'
+import { setupGracefulShutdown } from './utils/shutdown'
 
+// Defining the CLI Program with description and version
 program
-  .name('OpenGov Summary Bot')
-  .description('A CLI to summarize OpenGov proposals')
+  .name('OpenGov Summary CLI')
+  .description('A CLI to summarize Polkadot OpenGov proposals')
   .version('0.1.0')
 
-program
-  .command('split')
-  .description('Split a string into substrings and display as an array')
-  .argument('<string>', 'string to split')
-  .option('--first', 'display just the first substring')
-  .option('-s, --separator <char>', 'separator character', ',')
-  .action(splitString)
+// Adding commands to the CLI program
+program.addCommand(referendum)
 
-program.parse()
+// Parse command-line arguments and execute commands
+program.parse(process.argv)
 
+// Handle graceful shutdown
+setupGracefulShutdown(async () => {
+  console.log('Shutting down gracefully...')
+  // NOTE: Add cleanup logic, like closing database connections
+})
+
+// Expose program for use in command modules
 export { program }

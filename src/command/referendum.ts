@@ -1,0 +1,94 @@
+// Copyright 2024 JKRB Investments Limited. All rights reserved.
+
+import { Command } from 'commander'
+import inquirer from 'inquirer'
+import { z } from 'zod'
+import { program } from '../index.js'
+import { getReferendum } from '../utils/referendums.js'
+
+// Define the schema for the referendum summary command
+const schema = z.object({
+  refId: z.coerce.number().int().min(0),
+})
+
+// Function to inspect referenda
+export const referendum = new Command('referendum')
+  .description(
+    'Provides tooling to inspect and generate summaries for OpenGov referenda.'
+  )
+  .option('-r, --ref <id>', 'Specify a referendum ID')
+  .action(async (o) => {
+    // Validate options against zod schema and exit early if invalid
+    const options = schema.safeParse(o)
+    if (!options.success) {
+      console.error(options.error.format())
+      process.exit(1)
+    }
+    // Extract referendum ID from options
+    const { refId } = options.data
+
+    while (true) {
+      // Prompt user for action
+      const { choice } = await inquirer.prompt([
+        {
+          type: 'list',
+          name: 'choice',
+          message: `Ready to work with Referendum ID ${refId}. Choose an action:`,
+          choices: [
+            'Display Referendum Metadata',
+            'Generate AI Summary',
+            'Help',
+            'Exit',
+          ],
+        },
+      ])
+
+      // Handle user choice
+      if (choice === 'Display Referendum Metadata') {
+        await handleDisplayMetadata(refId)
+      } else if (choice === 'Generate AI Summary') {
+        await handleDisplayAISummary(refId)
+      } else if (choice === 'Help') {
+        handleHelp()
+      } else if (choice === 'Exit') {
+        handleExit()
+        // Important: Break the loop to exit the command
+        break
+      }
+    }
+  })
+
+// Handle display AI summary
+const handleDisplayAISummary = async (refId: number) => {
+  console.log(`Generating AI summary for Referendum ID: ${refId}`)
+  // TODO: Implement AI summary generation logic
+}
+
+// Handle displaying referendum metadata
+const handleDisplayMetadata = async (refId: number) => {
+  console.log(`Fetching metadata for Referendum ID: ${refId}`)
+
+  // Fetch referendum data
+  const result = await getReferendum(refId)
+  if (!result) {
+    console.error(`Referendum with ID ${refId} not found or an error occurred.`)
+    return
+  }
+  // Display the CLI friendly metadata
+  const { status, title, tags, comment_count } = result
+  console.log('Title: ', title)
+  console.log('Status: ', status)
+  console.log('Tags: ', tags)
+  console.log('Comment count: ', comment_count)
+}
+
+// Handler for displaying help information
+const handleHelp = () => {
+  console.log(program.helpInformation())
+}
+
+// Handler for exiting the program
+const handleExit = () => {
+  console.log('Exiting...')
+  process.exit(1)
+}

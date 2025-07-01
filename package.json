@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsup",
-    "run": "pnpm build",
+    "cli": "pnpm build && node dist/index.js",
     "lint": "eslint './**' --fix && npx prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.27.0",
+    "@types/node": "^24.0.8",
     "@typescript-eslint/eslint-plugin": "^8.29.1",
     "@typescript-eslint/parser": "^8.34.0",
     "eslint": "^9.27.0",
@@ -45,6 +46,7 @@
   "dependencies": {
     "axios": "^1.9.0",
     "commander": "^14.0.0",
-    "inquirer": "^12.6.3"
+    "inquirer": "^12.6.3",
+    "zod": "^3.25.67"
   }
 }
