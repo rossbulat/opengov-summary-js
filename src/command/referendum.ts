@@ -27,13 +27,15 @@ export const referendum = new Command('referendum')
     // Extract referendum ID from options
     const refId = options.data.ref
 
+    console.log(`Ready to work with Referendum ID ${refId}.`)
+
     while (true) {
       // Prompt user for action
       const { choice } = await inquirer.prompt([
         {
           type: 'list',
           name: 'choice',
-          message: `Ready to work with Referendum ID ${refId}. Choose an action:`,
+          message: 'Choose an action:',
           choices: [
             'Display Referendum Metadata',
             'Generate AI Summary',
