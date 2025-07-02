@@ -2,6 +2,7 @@ import { program } from 'commander'
 import 'dotenv/config'
 import OpenAI from 'openai'
 import { referendum } from './command/referendum'
+import { version } from './command/version'
 import { setupGracefulShutdown } from './utils/shutdown'
 
 // Instantiate OpenAI client with API key
@@ -17,6 +18,7 @@ program
 
 // Adding commands to the CLI program
 program.addCommand(referendum)
+program.addCommand(version)
 
 // Parse command-line arguments and execute commands
 program.parse(process.argv)

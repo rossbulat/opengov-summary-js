@@ -2,6 +2,7 @@ import axios from 'axios'
 import { openai } from '..'
 import type { GetReferendumResult } from '../types'
 
+// Base URL for PolkAssembly API to fetch referendum data
 export const POLKASSEMBLY_BASE_URL = 'https://api.polkassembly.io/api/v1'
 
 // Function to fetch referendum data from PolkAssembly API and return relevant metadata
