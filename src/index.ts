@@ -1,6 +1,13 @@
 import { program } from 'commander'
+import 'dotenv/config'
+import OpenAI from 'openai'
 import { referendum } from './command/referendum'
 import { setupGracefulShutdown } from './utils/shutdown'
+
+// Instantiate OpenAI client with API key
+export const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+})
 
 // Defining the CLI Program with description and version
 program

@@ -4,7 +4,7 @@ import { Command } from 'commander'
 import inquirer from 'inquirer'
 import { z } from 'zod'
 import { program } from '../index.js'
-import { getReferendum } from '../utils/referendums.js'
+import { getReferendum, summariseReferendum } from '../utils/referendums.js'
 
 // Define the schema for the referendum summary command
 const schema = z.object({
@@ -63,7 +63,17 @@ export const referendum = new Command('referendum')
 // Handle display AI summary
 const handleDisplayAISummary = async (refId: number) => {
   console.log(`Generating AI summary for Referendum ID: ${refId}`)
-  // TODO: Implement AI summary generation logic
+  // Fetch referendum data
+  const result = await getReferendum(refId)
+  if (!result) {
+    console.error(`Referendum with ID ${refId} not found or an error occurred.`)
+    return
+  }
+  // Get content for summarization
+  const { content } = result
+  const response = await summariseReferendum(content)
+  console.log(response)
+  console.log('------ Summary generated successfully ---')
 }
 
 // Handle displaying referendum metadata
