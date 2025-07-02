@@ -2,15 +2,16 @@ import axios from 'axios'
 import { openai } from '..'
 import type { GetReferendumResult } from '../types'
 
+export const POLKASSEMBLY_BASE_URL = 'https://api.polkassembly.io/api/v1'
+
 // Function to fetch referendum data from PolkAssembly API and return relevant metadata
 export const getReferendum = async (
   refId: number
 ): Promise<GetReferendumResult | undefined> => {
   try {
     // Configure Axios instance with base URL for PolkAssembly API
-    const baseURL = 'https://api.polkassembly.io/api/v1'
     const axiosApi = axios.create({
-      baseURL,
+      baseURL: POLKASSEMBLY_BASE_URL,
     })
 
     // Fetch referendum data using the provided ref ID (that PolkAssembly refers to as postId)
