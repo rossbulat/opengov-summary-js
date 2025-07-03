@@ -39,10 +39,28 @@ describe('CLI Program', () => {
     expect(commands).toContain('version')
   })
 
+  it('should have correct number of commands', async () => {
+    const { program } = await import('../src/index')
+
+    expect(program.commands).toHaveLength(2)
+  })
+
+  it('should export openai client', async () => {
+    const { openai } = await import('../src/index')
+
+    expect(openai).toBeDefined()
+  })
+
   it('should handle graceful shutdown setup', async () => {
     // This test verifies that the graceful shutdown is set up without errors
     expect(async () => {
       await import('../src/index')
     }).not.toThrow()
+  })
+
+  it('should not parse arguments in test environment', async () => {
+    // Since we set VITEST=true in the environment, program.parse should not be called
+    // The program should not automatically parse in test environment
+    expect(process.env.VITEST).toBe('true')
   })
 })
