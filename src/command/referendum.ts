@@ -3,7 +3,6 @@
 import { Command } from 'commander'
 import inquirer from 'inquirer'
 import { z } from 'zod'
-import { program } from '../index.js'
 import { getReferendum, summariseReferendum } from '../utils/referendums.js'
 
 // Define the schema for the referendum summary command
@@ -96,7 +95,13 @@ const handleDisplayMetadata = async (refId: number) => {
 
 // Handler for displaying help information
 const handleHelp = () => {
-  console.log(program.helpInformation())
+  console.log(`
+Referendum Command Help:
+- Display Referendum Metadata: Shows the title, status, tags, and comment count for the referendum
+- Generate AI Summary: Creates an AI-powered summary of the referendum content
+- Help: Shows this help information
+- Exit: Exits the referendum command
+  `)
 }
 
 // Handler for exiting the program
