@@ -132,6 +132,6 @@ Current test coverage focuses on:
 
 ## APIs Used
 
-- [Polkassembly](https://docs.polkassembly.io/jekyll/2023-10-17-api-and-resources.html): For fetching referendum data from Polkadot OpenGov
+- [Polkassembly](https://documenter.getpostman.com/view/764953/2s93JxqLoH#intro): For fetching referendum data from Polkadot OpenGov
 - [OpenAI API](https://platform.openai.com/docs/api-reference): For generating AI-powered summaries of proposals
 
