@@ -20,8 +20,10 @@ program
 program.addCommand(referendum)
 program.addCommand(version)
 
-// Parse command-line arguments and execute commands
-program.parse(process.argv)
+// Parse command-line arguments and execute commands (only when not in test environment)
+if (process.env.VITEST !== 'true') {
+  program.parse(process.argv)
+}
 
 // Handle graceful shutdown
 setupGracefulShutdown(async () => {
