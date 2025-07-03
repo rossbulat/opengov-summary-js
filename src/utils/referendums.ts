@@ -5,7 +5,7 @@ import type { GetReferendumResult } from '../types'
 // Base URL for PolkAssembly API to fetch referendum data
 export const POLKASSEMBLY_BASE_URL = 'https://api.polkassembly.io/api/v1'
 
-// Function to fetch referendum data from PolkAssembly API and return relevant metadata
+// Fetches referendum data from PolkAssembly API and returns relevant metadata
 export const getReferendum = async (
   refId: number
 ): Promise<GetReferendumResult | undefined> => {
@@ -46,7 +46,7 @@ export const getReferendum = async (
   }
 }
 
-// Function to summarise a referendum using OpenAI's GPT model
+// Generates a summary of the referendum content using OpenAI's GPT model
 export const summariseReferendum = async (content: string) => {
   const response = await openai.responses.create({
     model: 'gpt-4.1',
