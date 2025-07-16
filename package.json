@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsup",
-    "cli": "pnpm build && node dist/index.js",
+    "cli": "node dist/index.js",
     "lint": "eslint './**' --fix && npx prettier --write .",
     "test": "vitest run",
     "test:watch": "vitest",
