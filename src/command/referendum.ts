@@ -1,5 +1,3 @@
-// Copyright 2024 JKRB Investments Limited. All rights reserved.
-
 import { Command } from 'commander'
 import inquirer from 'inquirer'
 import { z } from 'zod'
